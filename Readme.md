@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Elena Nikishina](https://up.htmlacademy.ru/javascript/19/user/477225).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Беляев](https://up.htmlacademy.ru/javascript/19/user/691043).
 
 ---
 
