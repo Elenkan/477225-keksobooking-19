@@ -145,9 +145,12 @@ mainPin.addEventListener('keydown', function (evt) {
 var roomNumber = mainForm.querySelector('#room_number');
 var capacity = mainForm.querySelector('#capacity');
 
-var m = function () {
-  if ((roomNumber.value = 1) && (capacity.value >= 2)) {
-    console.log('f');
+var checkSelect = function () {
+  if (roomNumber.value < capacity.value) {
+    capacity.setCustomValidity('Количество гостей не должно превышать количество комнат');
+  } else {
+    capacity.setCustomValidity('');
   }
 };
-m();
+roomNumber.addEventListener('change', checkSelect);
+capacity.addEventListener('change', checkSelect);
