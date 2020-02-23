@@ -5,6 +5,10 @@
   var map = document.querySelector('.map');
   var renderCard = function (adv) {
     var cardElement = similarCardTemplate.cloneNode(true);
+    var popupClose = cardElement.querySelector('.popup__close');
+    var cardClose = function () {
+      cardElement.classList.add('hidden');
+    };
     cardElement.querySelector('.popup__title').textContent = adv.offer.title;
     cardElement.querySelector('.popup__text--address').textContent = adv.offer.address;
     cardElement.querySelector('.popup__text--price').textContent = adv.offer.price + ruble + '/ночь';
@@ -16,20 +20,23 @@
     cardElement.querySelector('.popup__description').textContent = adv.offer.description;
     // cardElement.querySelector('.popup__photos').textContent = ;
     cardElement.querySelector('.popup__avatar').src = adv.author.avatar;
+    popupClose.addEventListener('click', cardClose);
+    document.addEventListener('keydown', function (evt) {
+      if (evt.key === 'Escape') {
+        cardClose();
+      }
+    });
     return cardElement;
   };
 
-  var adverts = window.pins.adverts;
-  var filledMap = function () {
+  var filledList = function (i) {
     var fragment = document.createDocumentFragment();
-    // for (var i = 0; i < adverts.length; i++) {
-
-    // }
-    fragment.appendChild(renderCard(adverts[1]));
+    fragment.appendChild(renderCard(window.data.adverts[i]));
     map.appendChild(fragment);
   };
 
   window.card = {
-    filledMap: filledMap
+    filledList: filledList,
+    renderCard: renderCard,
   };
 })();

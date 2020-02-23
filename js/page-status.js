@@ -9,8 +9,7 @@
 
   var mapOpen = function () {
     document.querySelector('.map').classList.remove('map--faded');
-    window.pins.filledMap();
-    window.card.filledMap();
+    window.pins.filledList();
   };
 
   var mapClose = function () {
