@@ -22,15 +22,20 @@
     return pinElement;
   };
 
-  var filledList = function () {
+  var filledList = function (adv) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < window.data.adverts.length; i++) {
-      fragment.appendChild(renderAdvert(window.data.adverts[i]));
+    for (var i = 0; i < adv.length; i++) {
+      fragment.appendChild(renderAdvert(adv[i]));
     }
     pinList.appendChild(fragment);
   };
 
+  var onError = function () {
+    console.log('что-т пошло не так');
+  };
+
   window.pins = {
-    filledList: filledList
+    filledList: filledList,
+    onError: onError
   };
 })();
