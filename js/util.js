@@ -20,10 +20,24 @@
     return b;
   };
 
+  var setDisabled = function (arr) {
+    arr.forEach(function (element) {
+      element.setAttribute('disabled', 'disabled');
+    });
+  };
+
+  var removeDisabled = function (arr) {
+    arr.forEach(function (element) {
+      element.removeAttribute('disabled');
+    });
+  };
+
   window.util = {
     randomNumber: getRandomNumber,
     randomElement: getRandomElement,
     newArrowLength: getNewArrowLength,
-    nonRepeatingNumber: getNonRepeatingNumber
+    nonRepeatingNumber: getNonRepeatingNumber,
+    setDisabled: setDisabled,
+    removeDisabled: removeDisabled
   };
 })();

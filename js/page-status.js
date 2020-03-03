@@ -2,14 +2,16 @@
 (function () {
   var fields = document.querySelectorAll('fieldset');
   var mapFilter = document.querySelector('.map__filters');
+  var selects = document.querySelectorAll('select');
   var mainForm = document.querySelector('.ad-form');
   var mainPin = document.querySelector('.map__pin--main');
   var MAIN_PIN_HEIGHT = 84;
   var address = mainForm.querySelector('#address');
 
+
   var mapOpen = function () {
     document.querySelector('.map').classList.remove('map--faded');
-    window.load(window.pins.filledList, window.pins.onError);
+    window.load.loadData(window.load.onSuccess, window.load.onError);
   };
 
   var mapClose = function () {
@@ -26,9 +28,8 @@
   var formClose = function () {
     mapFilter.classList.add('.ad-form--disabled');
     address.value = getCenterCoordinatePin();
-    for (var i = 0; i < fields.length; i++) {
-      fields[i].setAttribute('disabled', 'disabled');
-    }
+    window.util.setDisabled(fields);
+    window.util.setDisabled(selects);
   };
 
   var getBottomCoordinatePin = function () {
@@ -40,9 +41,9 @@
   var formOpen = function () {
     mapFilter.classList.remove('ad-form--disabled');
     mainForm.classList.remove('ad-form--disabled');
-    for (var i = 0; i < fields.length; i++) {
-      fields[i].removeAttribute('disabled');
-    }
+
+    window.util.removeDisabled(fields);
+    mapFilter.querySelector('#housing-features').setAttribute('disabled', 'disabled');
     address.value = getBottomCoordinatePin();
   };
 
@@ -64,6 +65,8 @@
   });
 
   window.pageStatus = {
-    mainForm: mainForm
+    mainForm: mainForm,
+    selects: selects,
+    mapFilter: mapFilter
   };
 })();
