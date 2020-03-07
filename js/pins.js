@@ -5,7 +5,7 @@
   // var PIN_WIDTH = 50;
   // var PIN_HEIGHT = 70;
   var map = document.querySelector('.map');
-  var QUANTITY = 5;
+  // var QUANTITY = 5;
   var renderAdvert = function (adv) {
     var pinElement = similarPinTemplate.cloneNode(true);
     pinElement.querySelector('img').src = adv.author.avatar;
@@ -22,9 +22,9 @@
     });
     return pinElement;
   };
-  var filledList = function (arr) {
+  var filledList = function (arr, arrLength) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < arrLength; i++) {
       fragment.appendChild(renderAdvert(arr[i]));
     }
     pinList.appendChild(fragment);

@@ -29,23 +29,10 @@
     xhr.send();
   };
 
-  var adverts = [];
-  var onSuccess = function (data) {
-    adverts = data;
-    window.pins.filledList(adverts);
-    // var filterAdverts = adverts.filter(function (it) {
-    //   return it.offer.type === 'bungalo';
-    // });
 
-    // console.log(filterAdverts);
-    document.querySelector('#housing-type').addEventListener('change', function () {
-      if (document.querySelector('#housing-type').value === 'bungalo') {
-        var filterAdverts = adverts.filter(function (it) {
-          return it.offer.type === 'bungalo';
-        });
-        console.log(filterAdverts);
-      }
-    });
+  var onSuccess = function (data) {
+    window.load.adverts = data;
+    window.pins.filledList(window.load.adverts, 5);
   };
   var onError = function () {
     console.log('что-т пошло не так');
@@ -53,7 +40,6 @@
 
   window.load = {
     loadData: loadData,
-    adverts: adverts,
     onSuccess: onSuccess,
     onError: onError
   };
