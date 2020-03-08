@@ -32,30 +32,25 @@
     window.util.setDisabled(selects);
   };
 
-  var getBottomCoordinatePin = function () {
-    var mainPinX = Math.round(mainPin.getBoundingClientRect().left + (mainPin.offsetWidth / 2));
-    var mainPinY = mainPin.getBoundingClientRect().top + MAIN_PIN_HEIGHT;
-    return (mainPinX + ', ' + mainPinY);
-  };
-
   var formOpen = function () {
     mapFilter.classList.remove('ad-form--disabled');
     mainForm.classList.remove('ad-form--disabled');
 
     window.util.removeDisabled(fields);
     mapFilter.querySelector('#housing-features').setAttribute('disabled', 'disabled');
-    address.value = getBottomCoordinatePin();
   };
 
   mapClose();
   formClose();
 
   mainPin.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
     if (evt.which === 1) {
       mapOpen();
       formOpen();
     }
   });
+
 
   mainPin.addEventListener('keydown', function (evt) {
     if (evt.key === 'Enter') {
@@ -65,8 +60,12 @@
   });
 
   window.pageStatus = {
+    address: address,
+    mainPin: mainPin,
+    MAIN_PIN_HEIGHT: MAIN_PIN_HEIGHT,
     mainForm: mainForm,
     selects: selects,
     mapFilter: mapFilter
   };
+
 })();
