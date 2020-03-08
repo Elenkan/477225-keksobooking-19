@@ -1,5 +1,10 @@
 'use strict';
 (function () {
+  var getMaxLength = function (arrLength, maxNumber) {
+    var lengthArr = arrLength > maxNumber ? maxNumber : arrLength;
+    return lengthArr;
+  };
+
   var getRandomNumber = function (min, max) {
     return ((Math.round(Math.random() * (max - min + 1)) + min));
   };
@@ -32,12 +37,20 @@
     });
   };
 
+  var addHiddenClass = function (arr) {
+    for (var i = 2; i < arr.length; i++) {
+      arr[i].classList.add('hidden');
+    }
+  };
+
   window.util = {
     randomNumber: getRandomNumber,
     randomElement: getRandomElement,
     newArrowLength: getNewArrowLength,
     nonRepeatingNumber: getNonRepeatingNumber,
     setDisabled: setDisabled,
-    removeDisabled: removeDisabled
+    removeDisabled: removeDisabled,
+    addHiddenClass: addHiddenClass,
+    getMaxLength: getMaxLength,
   };
 })();

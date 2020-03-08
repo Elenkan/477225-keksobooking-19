@@ -54,7 +54,6 @@
     cardElement.querySelector('.popup__features').textContent = adv.offer.features;
     cardElement.querySelector('.popup__description').textContent = adv.offer.description;
     filledPhoto(adv.offer.photos);
-    // cardElement.querySelector('.popup__photo').src = adv.offer.photos.join(', ');
     cardElement.querySelector('.popup__avatar').src = adv.author.avatar;
     popupClose.addEventListener('click', cardClose);
     document.addEventListener('keydown', function (evt) {

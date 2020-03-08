@@ -32,7 +32,7 @@
 
   var onSuccess = function (data) {
     window.load.adverts = data;
-    window.pins.filledList(window.load.adverts, 5);
+    window.pins.filledList(window.load.adverts);
   };
   var onError = function () {
     console.log('что-т пошло не так');
