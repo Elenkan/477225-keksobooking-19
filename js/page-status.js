@@ -26,7 +26,7 @@
   };
 
   var formClose = function () {
-    mapFilter.classList.add('.ad-form--disabled');
+    mapFilter.classList.add('ad-form--disabled');
     address.value = getCenterCoordinatePin();
     window.util.setDisabled(fields);
     window.util.setDisabled(selects);
@@ -60,6 +60,8 @@
   });
 
   window.pageStatus = {
+    mapClose: mapClose,
+    formClose: formClose,
     address: address,
     mainPin: mainPin,
     MAIN_PIN_HEIGHT: MAIN_PIN_HEIGHT,
