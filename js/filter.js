@@ -50,6 +50,10 @@
 
 
   housingType.addEventListener('change', getFilterHousingType);
+  window.filter = {
+    popupClose: popupClose,
+    pinList: pinList
+  };
 
 })();
 
