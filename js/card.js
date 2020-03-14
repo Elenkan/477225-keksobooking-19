@@ -23,6 +23,41 @@
     }
     return houseType;
   };
+
+  var getFeature = function (feature) {
+    var typeFeature;
+    switch (feature) {
+      case 'wifi':
+        typeFeature = 'Wi-Fi';
+        break;
+      case 'dishwasher':
+        typeFeature = ' посудомоечная машина';
+        break;
+      case 'parking':
+        typeFeature = ' парковка';
+        break;
+      case 'washer':
+        typeFeature = ' стиральная машина';
+        break;
+      case 'elevator':
+        typeFeature = ' лифт';
+        break;
+      case 'conditioner':
+        typeFeature = ' кондиционер';
+        break;
+      default:
+        typeFeature = 'неизвестный тип удобства';
+    }
+    return typeFeature;
+  };
+  var getListOfFeatures = function (arr) {
+    var someArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      var el = getFeature(arr[i]);
+      someArr.push(el);
+    }
+    return someArr;
+  };
   var renderCard = function (adv) {
     var cardElement = similarCardTemplate.cloneNode(true);
     var popupClose = cardElement.querySelector('.popup__close');
@@ -51,7 +86,7 @@
     cardElement.querySelector('.popup__text--capacity').textContent = adv.offer.rooms + ' комнаты для ' + adv.offer.guests + ' гостей';
     cardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + adv.offer.checkin +
     ', выезд до ' + adv.offer.checkout;
-    cardElement.querySelector('.popup__features').textContent = adv.offer.features;
+    cardElement.querySelector('.popup__features').textContent = getListOfFeatures(adv.offer.features);
     cardElement.querySelector('.popup__description').textContent = adv.offer.description;
     filledPhoto(adv.offer.photos);
     cardElement.querySelector('.popup__avatar').src = adv.author.avatar;
