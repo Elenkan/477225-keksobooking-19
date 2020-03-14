@@ -12,8 +12,11 @@
     pinElement.querySelector('img').alt = adv.offer.title;
     pinElement.style = 'left: ' + (adv.location.x /* + (PIN_WIDTH / 2)*/) + 'px; top: ' + (adv.location.y /* + PIN_HEIGHT*/) + 'px';
     var card = function () {
-
-        map.appendChild(window.card.renderCard(adv));
+      //НАПИСАТЬ ФУНКЦИЮ
+      if (map.querySelector('.map__card')) {
+        map.removeChild(map.querySelector('.map__card'));
+      }
+      map.appendChild(window.card.renderCard(adv));
     };
     pinElement.addEventListener('click', card);
     pinElement.addEventListener('keydown', function (evt) {

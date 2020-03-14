@@ -64,8 +64,7 @@
       window.pageStatus.mainForm.classList.add('ad-form--disabled');
       window.pageStatus.formClose();
       window.pageStatus.mapClose();
-      window.filter.popupClose();
-      window.util.addHiddenClass(window.filter.pinList.children);
+      window.filter.hideElement();
     });
     evt.preventDefault();
   });
