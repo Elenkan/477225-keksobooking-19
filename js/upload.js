@@ -1,6 +1,7 @@
 'use strict';
 (function () {
   var URL_UPLOAD = 'https://js.dump.academy/keksobooking';
+  var resetForm = document.querySelector('.ad-form__reset');
 
   var errorMsgTemplate = document.querySelector('#error').content.querySelector('.error');
   var getErrorMsg = function () {
@@ -49,6 +50,7 @@
     document.addEventListener('keydown', function (evt) {
       if (evt.key === 'Escape') {
         successMsgClose();
+
       }
     });
     document.addEventListener('click', function () {
@@ -67,5 +69,12 @@
       window.filter.hideElement();
     });
     evt.preventDefault();
+  });
+  resetForm.addEventListener('click', function () {
+    window.pageStatus.mainForm.reset();
+    window.pageStatus.mainForm.classList.add('ad-form--disabled');
+    window.pageStatus.formClose();
+    window.pageStatus.mapClose();
+    window.filter.hideElement();
   });
 })();

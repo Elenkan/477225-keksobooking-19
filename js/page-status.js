@@ -8,10 +8,10 @@
   var MAIN_PIN_HEIGHT = 84;
   var address = mainForm.querySelector('#address');
 
-
   var mapOpen = function () {
     document.querySelector('.map').classList.remove('map--faded');
     window.load.loadData(window.load.onSuccess, window.load.onError);
+    mainPin.removeEventListener('keydown', onMainPinEnter);
   };
 
   var mapClose = function () {
@@ -43,21 +43,26 @@
   mapClose();
   formClose();
 
-  mainPin.addEventListener('mousedown', function (evt) {
+  var onMainPin = function (evt) {
     evt.preventDefault();
     if (evt.which === 1) {
       mapOpen();
       formOpen();
     }
-  });
+    mainPin.removeEventListener('mousedown', onMainPin);
+  };
 
-
-  mainPin.addEventListener('keydown', function (evt) {
+  var onMainPinEnter = function (evt) {
     if (evt.key === 'Enter') {
       mapOpen();
       formOpen();
     }
-  });
+    mainPin.removeEventListener('keydown', onMainPinEnter);
+  };
+
+  mainPin.addEventListener('mousedown', onMainPin);
+
+  mainPin.addEventListener('keydown', onMainPinEnter);
 
   window.pageStatus = {
     mapClose: mapClose,

@@ -5,11 +5,20 @@ var housingType = window.pageStatus.mainForm.querySelector('#type');
 var rentPrice = window.pageStatus.mainForm.querySelector('#price');
 var timein = window.pageStatus.mainForm.querySelector('#timein');
 var timeout = window.pageStatus.mainForm.querySelector('#timeout');
+var titleAdvert = document.querySelector('#title');
 
+titleAdvert.addEventListener('input', function (evt) {
+  var target = evt.target;
+  if (target.value.length < 30) {
+    target.style = 'border: 2px solid #FF0000; box-shadow: none';
+  } else {
+    target.style = '';
+  }
+});
 
 var checkSelect = function () {
-  if (roomNumber.value < capacity.value) {
-    capacity.setCustomValidity('Количество гостей не должно превышать количество комнат');
+  if ((roomNumber.value < capacity.value) || (roomNumber.value === '100') && (capacity.value > 0)) {
+    capacity.setCustomValidity('Количество гостей не соответствует количеству комнат');
   } else {
     capacity.setCustomValidity('');
   }
@@ -35,8 +44,18 @@ var getMinPriceOfRent = function (typeValue) {
       minPrice = '10000';
   }
 
-  return (rentPrice.placeholder = minPrice);
+  return ((rentPrice.placeholder = minPrice) && (rentPrice.setAttribute('min', minPrice)));
 };
+
+rentPrice.addEventListener('input', function (evt) {
+  var target = evt.target;
+  if ((target.value < target.min)) {
+    target.style = 'border: 2px solid #FF0000; box-shadow: none';
+  } else {
+    target.style = '';
+  }
+});
+
 
 var checkTimein = function (time) {
   var newTime;
@@ -79,6 +98,7 @@ var checkTimeout = function (time) {
 roomNumber.addEventListener('change', checkSelect);
 capacity.addEventListener('change', checkSelect);
 housingType.addEventListener('change', getMinPriceOfRent);
+rentPrice.addEventListener('change', getMinPriceOfRent);
 timein.addEventListener('change', checkTimein);
 timeout.addEventListener('change', checkTimeout);
 
