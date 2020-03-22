@@ -66,7 +66,8 @@
       window.pageStatus.formClose();
       window.pageStatus.mapClose();
       window.filter.hideElement();
-
+      window.pageStatus.mainPin.addEventListener('mousedown', window.pageStatus.onMainPinLeftClick);
+      window.pageStatus.mainPin.addEventListener('keydown', window.pageStatus.onMainPinEnterPress);
     });
     evt.preventDefault();
   });
@@ -76,5 +77,7 @@
     window.pageStatus.formClose();
     window.pageStatus.mapClose();
     window.filter.hideElement();
+    window.pageStatus.mainPin.addEventListener('mousedown', window.pageStatus.onMainPinLeftClick);
+    window.pageStatus.mainPin.addEventListener('keydown', window.pageStatus.onMainPinEnterPress);
   });
 })();

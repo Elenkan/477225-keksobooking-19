@@ -72,7 +72,9 @@
     selects: selects,
     MAIN_PIN_HEIGHT: MAIN_PIN_HEIGHT,
     mainForm: mainForm,
-    mapFilter: mapFilter
+    mapFilter: mapFilter,
+    onMainPinEnterPress: onMainPinEnterPress,
+    onMainPinLeftClick: onMainPinLeftClick
   };
 
 })();
