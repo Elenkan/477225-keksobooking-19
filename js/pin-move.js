@@ -1,7 +1,5 @@
 'use strict';
 (function () {
-
-
   window.pageStatus.mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
@@ -22,8 +20,27 @@
         y: moveEvt.clientY
       };
 
-      window.pageStatus.mainPin.style.top = (window.pageStatus.mainPin.offsetTop - shift.y) + 'px';
-      window.pageStatus.mainPin.style.left = (window.pageStatus.mainPin.offsetLeft - shift.x) + 'px';
+      var mainPinY = window.pageStatus.mainPin.offsetTop - shift.y;
+      var mainPinX = window.pageStatus.mainPin.offsetLeft - shift.x;
+
+      if (mainPinY > 630) {
+        mainPinY = 630;
+      } else if (mainPinY < 130) {
+        mainPinY = 130;
+      }
+      var widthMap = document.querySelector('.map').offsetWidth - document.querySelector('.map').offsetLeft;
+      if (mainPinX < 0) {
+        mainPinX = 0 - (window.pageStatus.mainPin.offsetWidth / 2);
+      } else if (mainPinX > widthMap) {
+        mainPinX = widthMap + (window.pageStatus.mainPin.offsetWidth / 2);
+      }
+
+
+      window.pageStatus.mainPin.style.top = mainPinY + 'px';
+      window.pageStatus.mainPin.style.left = mainPinX + 'px';
+      var mainPinAdressX = Math.round(mainPinX + (window.pageStatus.mainPin.offsetHeight / 2));
+      var mainPinAdressY = Math.round(mainPinY + window.pageStatus.mainPin.offsetHeight);
+      window.pageStatus.address.value = mainPinAdressX + ', ' + mainPinAdressY;
     };
 
     var onMouseUp = function (upEvt) {

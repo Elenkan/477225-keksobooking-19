@@ -8,10 +8,10 @@
   var MAIN_PIN_HEIGHT = 84;
   var address = mainForm.querySelector('#address');
 
-
   var mapOpen = function () {
     document.querySelector('.map').classList.remove('map--faded');
     window.load.loadData(window.load.onSuccess, window.load.onError);
+    mainPin.removeEventListener('keydown', onMainPinEnterPress);
   };
 
   var mapClose = function () {
@@ -43,30 +43,35 @@
   mapClose();
   formClose();
 
-  mainPin.addEventListener('mousedown', function (evt) {
+  var onMainPinLeftClick = function (evt) {
     evt.preventDefault();
     if (evt.which === 1) {
       mapOpen();
       formOpen();
     }
-  });
+    mainPin.removeEventListener('mousedown', onMainPinLeftClick);
+  };
 
-
-  mainPin.addEventListener('keydown', function (evt) {
+  var onMainPinEnterPress = function (evt) {
     if (evt.key === 'Enter') {
       mapOpen();
       formOpen();
     }
-  });
+    mainPin.removeEventListener('keydown', onMainPinEnterPress);
+  };
+
+  mainPin.addEventListener('mousedown', onMainPinLeftClick);
+
+  mainPin.addEventListener('keydown', onMainPinEnterPress);
 
   window.pageStatus = {
     mapClose: mapClose,
     formClose: formClose,
     address: address,
     mainPin: mainPin,
+    selects: selects,
     MAIN_PIN_HEIGHT: MAIN_PIN_HEIGHT,
     mainForm: mainForm,
-    selects: selects,
     mapFilter: mapFilter
   };
 
