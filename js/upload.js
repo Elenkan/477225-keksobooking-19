@@ -3,24 +3,24 @@
   var URL_UPLOAD = 'https://js.dump.academy/keksobooking';
   var resetForm = document.querySelector('.ad-form__reset');
 
-  var errorMsgTemplate = document.querySelector('#error').content.querySelector('.error');
-  var getErrorMsg = function () {
-    var errorMsg = errorMsgTemplate.cloneNode(true);
-    var errorMsgClose = function () {
-      errorMsg.classList.add('hidden');
+  var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+  var getErrorMessage = function () {
+    var errorMessage = errorMessageTemplate.cloneNode(true);
+    var errorMessageClose = function () {
+      errorMessage.classList.add('hidden');
     };
-    var closeButton = errorMsg.querySelector('.error__button');
-    mainSpace.appendChild(errorMsg);
+    var closeButton = errorMessage.querySelector('.error__button');
+    mainSpace.appendChild(errorMessage);
     closeButton.addEventListener('click', function () {
-      errorMsgClose();
+      errorMessageClose();
     });
     document.addEventListener('keydown', function (evt) {
       if (evt.key === 'Escape') {
-        errorMsgClose();
+        errorMessageClose();
       }
     });
     document.addEventListener('click', function () {
-      errorMsgClose();
+      errorMessageClose();
     });
   };
 
@@ -32,41 +32,41 @@
     });
 
     xhr.addEventListener('error', function () {
-      onError(getErrorMsg());
+      onError(getErrorMessage());
     });
 
     xhr.open('POST', URL_UPLOAD);
     xhr.send(data);
   };
 
-  var successMsgTemplate = document.querySelector('#success').content.querySelector('.success');
+  var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
   var mainSpace = document.querySelector('main');
-  var getSuccessMsg = function () {
-    var successMsg = successMsgTemplate.cloneNode(true);
-    var successMsgClose = function () {
-      successMsg.classList.add('hidden');
+  var getSuccessMessage = function () {
+    var successMessage = successMessageTemplate.cloneNode(true);
+    var successMessageClose = function () {
+      successMessage.classList.add('hidden');
     };
-    mainSpace.appendChild(successMsg);
+    mainSpace.appendChild(successMessage);
     document.addEventListener('keydown', function (evt) {
       if (evt.key === 'Escape') {
-        successMsgClose();
-
+        successMessageClose();
       }
     });
     document.addEventListener('click', function () {
-      successMsgClose();
+      successMessageClose();
     });
   };
 
 
   window.pageStatus.mainForm.addEventListener('submit', function (evt) {
     window.upload(new FormData(window.pageStatus.mainForm), function () {
-      getSuccessMsg();
+      getSuccessMessage();
       window.pageStatus.mainForm.reset();
       window.pageStatus.mainForm.classList.add('ad-form--disabled');
       window.pageStatus.formClose();
       window.pageStatus.mapClose();
       window.filter.hideElement();
+
     });
     evt.preventDefault();
   });
