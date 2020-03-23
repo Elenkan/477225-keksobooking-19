@@ -40,6 +40,11 @@
       window.pageStatus.mainPin.style.left = mainPinX + 'px';
       var mainPinAdressX = Math.round(mainPinX + (window.pageStatus.mainPin.offsetHeight / 2));
       var mainPinAdressY = Math.round(mainPinY + window.pageStatus.mainPin.offsetHeight);
+      if (mainPinAdressY > 630) {
+        mainPinAdressY = 630;
+      } else if (mainPinAdressY <= 195) {
+        mainPinAdressY = 130;
+      }
       window.pageStatus.address.value = mainPinAdressX + ', ' + mainPinAdressY;
     };
 

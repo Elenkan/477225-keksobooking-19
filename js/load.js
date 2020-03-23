@@ -1,8 +1,8 @@
 'use strict';
 (function () {
   var URL = 'https://js.dump.academy/keksobooking/data';
-  var statusCode = 200;
   var TIMEOUT_IN_MS = 5000;
+  var statusCode = 200;
   var loadData = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';

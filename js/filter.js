@@ -9,6 +9,7 @@
   var filterBox = document.querySelector('.map__filters');
   var pinList = document.querySelector('.map__pins');
   var list = pinList.children;
+
   var removeCard = function () {
     if (window.pins.map.querySelector('.map__card')) {
       window.pins.map.removeChild(window.pins.map.querySelector('.map__card'));
@@ -85,27 +86,27 @@
   };
 
   var getHousingFeature = function (it) {
-    var array = [];
-    var newArray;
+    var features = [];
+    var newFeatures;
     for (var j = 0; j < checkboxes.length; j++) {
       if (checkboxes[j].checked) {
         var featureValue = checkboxes[j].value;
-        array.push(featureValue);
-        newArray = array.every(function (element) {
+        features.push(featureValue);
+        newFeatures = features.every(function (element) {
           hideElement();
           return it.offer.features.includes(element);
         });
       } else {
-        newArray = array.every(function (element) {
+        newFeatures = features.every(function (element) {
           hideElement();
           return it.offer.features.includes(element);
         });
       }
     }
-    return newArray;
+    return newFeatures;
   };
 
-  var getFilteredAdverts = function () {
+  var getFilteredAdverts = window.debounce(function () {
     var advertsArray = window.load.adverts
     .filter(getHousingType)
     .filter(getHousingPrice)
@@ -113,13 +114,14 @@
     .filter(getHousingGuest)
     .filter(getHousingFeature);
     return (window.pins.filledList(advertsArray));
-  };
+  });
 
   filterBox.addEventListener('change', getFilteredAdverts);
 
   window.filter = {
     hideElement: hideElement,
-    list: list
+    list: list,
+    filterBox: filterBox
   };
 
 })();

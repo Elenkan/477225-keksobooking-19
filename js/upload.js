@@ -68,6 +68,7 @@
       window.filter.hideElement();
       window.pageStatus.mainPin.addEventListener('mousedown', window.pageStatus.onMainPinLeftClick);
       window.pageStatus.mainPin.addEventListener('keydown', window.pageStatus.onMainPinEnterPress);
+      window.filter.filterBox.reset();
     });
     evt.preventDefault();
   });
@@ -79,5 +80,6 @@
     window.filter.hideElement();
     window.pageStatus.mainPin.addEventListener('mousedown', window.pageStatus.onMainPinLeftClick);
     window.pageStatus.mainPin.addEventListener('keydown', window.pageStatus.onMainPinEnterPress);
+    window.filter.filterBox.reset();
   });
 })();

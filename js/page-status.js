@@ -1,11 +1,11 @@
 'use strict';
 (function () {
+  var MAIN_PIN_HEIGHT = 84;
   var fields = document.querySelectorAll('fieldset');
   var mapFilter = document.querySelector('.map__filters');
   var selects = document.querySelectorAll('select');
   var mainForm = document.querySelector('.ad-form');
   var mainPin = document.querySelector('.map__pin--main');
-  var MAIN_PIN_HEIGHT = 84;
   var address = mainForm.querySelector('#address');
 
   var mapOpen = function () {

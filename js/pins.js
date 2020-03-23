@@ -1,9 +1,9 @@
 'use strict';
 (function () {
+  var QUANTITY = 5;
   var similarPinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
   var pinList = document.querySelector('.map__pins');
   var map = document.querySelector('.map');
-  var QUANTITY = 5;
   var renderAdvert = function (array) {
     if (array.offer) {
       var pinElement = similarPinTemplate.cloneNode(true);

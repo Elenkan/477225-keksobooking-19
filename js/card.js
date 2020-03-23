@@ -50,12 +50,12 @@
     return typeFeature;
   };
   var getListOfFeatures = function (array) {
-    var someArray = [];
+    var features = [];
     for (var i = 0; i < array.length; i++) {
       var element = getFeature(array[i]);
-      someArray.push(element);
+      features.push(element);
     }
-    return someArray;
+    return features;
   };
   var renderCard = function (data) {
     var cardElement = similarCardTemplate.cloneNode(true);
